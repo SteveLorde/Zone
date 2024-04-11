@@ -1,21 +1,28 @@
 import * as signalr from "@microsoft/signalr";
+import axios from "axios"
 import {Message} from "../../Data/Models/Message.ts";
 import {IChatService} from "./IChatService.ts";
+import {IAuthenticationService} from "../Authentication/IAuthenticationService.ts";
+import {Zone} from "../../Data/Models/Zone.ts";
 
 export class ChatService implements IChatService{
 
-    constructor() {}
+    _authService : IAuthenticationService = {} as IAuthenticationService;
+
+    constructor(authService : IAuthenticationService) {
+        this._authService = authService;
+    }
 
     backendUrl : string = process.env.BACKENDURL as string;
     chatConnection : signalr.HubConnection = {} as signalr.HubConnection;
 
 
-    async Initialize() {
-        this.chatConnection = new signalr.HubConnectionBuilder().withUrl(`${this.backendUrl}/chathub`).build();
+     Initialize() {
+        this.chatConnection = new signalr.HubConnectionBuilder().withUrl(`${this.backendUrl}/chathub`, {transport: signalr.HttpTransportType.WebSockets, accessTokenFactory: () => this._authService.GetToken()}).build();
         this.chatConnection.start();
     }
 
-    async ListenToChat() {
+     ListenToChat() : Message {
         let messageToReturn : Message = {} as Message;
         this.chatConnection.on('ReceiveMessage', (incomingMessage : Message) => {
             messageToReturn = incomingMessage;
@@ -23,10 +30,26 @@ export class ChatService implements IChatService{
         return messageToReturn;
     }
 
-
-    async SendMessage(chatMessage : Message) {
-        await this.chatConnection.invoke('SendMessage', chatMessage);
+     SendMessage(chatMessage : Message) {
+        this.chatConnection.invoke('SendMessage', chatMessage);
     }
+
+    async CreateZone(newZone : Zone): Promise<boolean> {
+        return await axios.post<boolean>(`${this.backendUrl}/createzone`, newZone).then(res => res.data);
+    }
+
+    async DeleteZone(zoneId : string) : Promise<boolean> {
+        return await axios.get<boolean>(`${this.backendUrl}/deletezone/${zoneId}`).then(res => res.data);
+    }
+
+    JoinZone(zoneId: string): void {
+        this.chatConnection.invoke('JoinZone', zoneId);
+    }
+
+     LeaveZone(zoneId: string): void {
+        this.chatConnection.invoke('LeaveZone', zoneId);
+    }
+
 
 
 }

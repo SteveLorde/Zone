@@ -25,6 +25,15 @@ class AuthenticationService implements IAuthenticationService {
         return await axios.post<boolean>(`${this.backendUrl}/Register`, authRequest).then(res => res.data);
     }
 
+    GetToken(): string {
+        const token = localStorage.getItem('usertoken');
+        if (token !== null) {
+            return token;
+        }
+        else {
+            return "null";
+        }
+    }
 
 
 }
