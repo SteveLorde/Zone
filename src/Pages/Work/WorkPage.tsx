@@ -1,0 +1,6 @@
+export function WorkPage() {
+    return (
+        <>
+        </>
+    );
+}
