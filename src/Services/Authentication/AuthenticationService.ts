@@ -2,7 +2,7 @@ import {AuthRequest} from "../../Data/Models/AuthRequest.ts";
 import {IAuthenticationService} from "./IAuthenticationService.ts";
 import axios from "axios";
 
-class AuthenticationService implements IAuthenticationService {
+export class AuthenticationService implements IAuthenticationService {
 
     backendUrl = process.env.BACKENDURL as string;
 

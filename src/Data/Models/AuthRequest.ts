@@ -1,5 +1,5 @@
 export interface AuthRequest {
     username : string
-    passworld : string
+    password : string
     email? : string
 }
