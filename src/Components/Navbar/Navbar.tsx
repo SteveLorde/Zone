@@ -13,7 +13,6 @@ export function Navbar() {
         }
     }
 
-
     return <>
         <div id="NavMenu" className="navbarmenu bg-blue-500">
             <link></link>

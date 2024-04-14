@@ -2,6 +2,7 @@ import {useForm} from "react-hook-form";
 import {AuthRequest} from "../../Data/Models/AuthRequest.ts";
 import {IAuthenticationService} from "../../Services/Authentication/IAuthenticationService.ts";
 import {useState} from "react";
+import "./LoginPageStyle.module.scss";
 
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
@@ -42,7 +43,7 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                 {/*Image*/}
                 <img src={""} alt={"loginpage"} />
                 {/*Login Form*/}
-                <div>
+                <div className={"formarea"}>
                     <button onClick={() => ToggleForm()}>Not Registered?</button>
                     {toggledLoginForm && <form onSubmit={loginFormSubmit(SubmitLogin)}>
                         <input type={"text"} {...loginInput("username")} />
