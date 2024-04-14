@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@automapper/classes": "^8.8.1",
+    "@automapper/core": "^8.8.1",
     "@microsoft/signalr": "^8.0.0",
     "axios": "^1.6.8",
+    "electron": "^29.3.0",
+    "electron-builder": "^24.13.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "reflect-metadata": "^0.1.14"
   },
   "devDependencies": {
     "@types/node": "latest",
