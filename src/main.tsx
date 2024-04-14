@@ -8,17 +8,16 @@ import {DevSupport} from "@react-buddy/ide-toolbox";
 import {ComponentPreviews, useInitial} from "./dev";
 import {LoginPage} from "./Pages/Login/LoginPage.tsx";
 import {SettingsPage} from "./Pages/Settings/SettingsPage.tsx";
+import {ZonePage} from "./Pages/Zone/ZonePage.tsx";
+import {JoinZonePage} from "./Pages/JoinZone/JoinZonePage.tsx";
 
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App/>
-    },
-    {
-        path: "settings",
-        element : <SettingsPage/>
-    }
+    {path: "/", element: <App/>},
+    {path: "settings", element : <SettingsPage/>},
+    {path: "joinzone", element : <JoinZonePage/>},
+    {path: "zone", element : <ZonePage/>},
+
 ]);
 
 
