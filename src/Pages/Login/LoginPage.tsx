@@ -6,9 +6,21 @@ import {IAuthenticationService} from "../../Services/Authentication/IAuthenticat
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
 
     const {register : loginInput, handleSubmit : loginFormSubmit, watch, formState: { errors }} = useForm<AuthRequest>();
+    const {register : registerInput, handleSubmit : registerFormSubmit, watch, formState: { errors }} = useForm<AuthRequest>();
+
 
     async function SubmitLogin(newLoginRequest : AuthRequest) {
         const res = await authService.Login(newLoginRequest);
+        if (res) {
+
+        }
+        else {
+
+        }
+    }
+
+    async function SubmitRegister(newRegisterRequest : AuthRequest) {
+        const res = await authService.Register(newRegisterRequest);
         if (res) {
 
         }
@@ -27,6 +39,12 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                     <form onSubmit={loginFormSubmit(SubmitLogin)}>
                         <input type={"text"} {...loginInput("username")} />
                         <input type={"text"} {...loginInput("password")} />
+                        <input type={"submit"}/>
+                    </form>
+
+                    <form onSubmit={registerFormSubmit(SubmitRegister)}>
+                        <input type={"text"} {...registerInput("username")} />
+                        <input type={"text"} {...registerInput("password")} />
                         <input type={"submit"}/>
                     </form>
                 </div>
