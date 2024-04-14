@@ -1,6 +1,7 @@
 import {AuthRequest} from "../../Data/Models/AuthRequest.ts";
 import {IAuthenticationService} from "./IAuthenticationService.ts";
 import axios from "axios";
+import {AccessToken} from "../../Data/Models/AccessToken.ts";
 
 export class AuthenticationService implements IAuthenticationService {
 
@@ -12,7 +13,7 @@ export class AuthenticationService implements IAuthenticationService {
         return await axios.post<string>(`${this.backendUrl}/Login`, authRequest).then(tokenres => {
             if (tokenres.data !== "") {
                 this.isLoggedIn = true;
-                localStorage.setItem('usertoken', tokenres.data);
+                localStorage.setItem('useraccesstoken', tokenres.data);
                 return true;
             }
             else {
@@ -33,6 +34,13 @@ export class AuthenticationService implements IAuthenticationService {
         else {
             return "null";
         }
+    }
+
+    SetCookie(accessToken : AccessToken) {
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + accessToken.expirationDate);
+        const cookieValue = encodeURIComponent("token") + "=" + encodeURIComponent(accessToken.accessToken) + "; expires=" + expirationDate.toUTCString() + "; path=/";
+        document.cookie = cookieValue;
     }
 
 

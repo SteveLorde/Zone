@@ -1,12 +1,19 @@
 import {useForm} from "react-hook-form";
 import {AuthRequest} from "../../Data/Models/AuthRequest.ts";
 import {IAuthenticationService} from "../../Services/Authentication/IAuthenticationService.ts";
+import {useState} from "react";
 
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
 
     const {register : loginInput, handleSubmit : loginFormSubmit, watch, formState: { errors }} = useForm<AuthRequest>();
     const {register : registerInput, handleSubmit : registerFormSubmit, watch, formState: { errors }} = useForm<AuthRequest>();
+
+    const [toggledLoginForm, setToggledForm] = useState<boolean>(true);
+
+    function ToggleForm() {
+        setToggledForm(!toggledLoginForm);
+    }
 
 
     async function SubmitLogin(newLoginRequest : AuthRequest) {
@@ -36,17 +43,18 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                 <img src={""} alt={"loginpage"} />
                 {/*Login Form*/}
                 <div>
-                    <form onSubmit={loginFormSubmit(SubmitLogin)}>
+                    <button onClick={() => ToggleForm()}>Not Registered?</button>
+                    {toggledLoginForm && <form onSubmit={loginFormSubmit(SubmitLogin)}>
                         <input type={"text"} {...loginInput("username")} />
                         <input type={"text"} {...loginInput("password")} />
                         <input type={"submit"}/>
-                    </form>
+                    </form>}
 
-                    <form onSubmit={registerFormSubmit(SubmitRegister)}>
+                    {!toggledLoginForm && <form onSubmit={registerFormSubmit(SubmitRegister)}>
                         <input type={"text"} {...registerInput("username")} />
                         <input type={"text"} {...registerInput("password")} />
                         <input type={"submit"}/>
-                    </form>
+                    </form>}
                 </div>
             </div>
         </>
