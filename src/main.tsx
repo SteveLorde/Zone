@@ -18,7 +18,6 @@ const router = createBrowserRouter([
     {path: "joinzone", element : <JoinZonePage/>},
     {path: "zone", element : <ZonePage/>},
     {path: "createzone", element : <CreateZonePage/>}
-
 ]);
 
 
