@@ -3,32 +3,20 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
-import {MainContext, MainContextProvider} from "./Services/State/MainContext.tsx";
-import {DevSupport} from "@react-buddy/ide-toolbox";
-import {ComponentPreviews, useInitial} from "./dev";
-import {SettingsPage} from "./Pages/Settings/SettingsPage.tsx";
-import {ZonePage} from "./Pages/Zone/ZonePage.tsx";
-import {JoinZonePage} from "./Pages/JoinZone/JoinZonePage.tsx";
-import {CreateZonePage} from "./Pages/CreateZone/CreateZonePage.tsx";
+import {MainContextProvider} from "./Services/State/MainContext.tsx";
+import {Dashboard} from "./Pages/Dashboard/Dashboard.tsx";
 
 
 const router = createBrowserRouter([
     {path: "/", element: <App/>},
-    {path: "settings", element : <SettingsPage/>},
-    {path: "joinzone", element : <JoinZonePage/>},
-    {path: "zone", element : <ZonePage/>},
-    {path: "createzone", element : <CreateZonePage/>}
+    {path: "dashboard", element : <Dashboard/>}
 ]);
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <MainContextProvider>
-            <DevSupport ComponentPreviews={ComponentPreviews}
-                        useInitialHook={useInitial}
-            >
                 <RouterProvider router={router}/>
-            </DevSupport>
         </MainContextProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
 );

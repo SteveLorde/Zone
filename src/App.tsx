@@ -1,15 +1,15 @@
 import './App.css';
-import {IAuthenticationService} from "./Services/Authentication/IAuthenticationService.ts";
-import {AuthenticationService} from "./Services/Authentication/AuthenticationService.ts";
 import {LoginPage} from "./Pages/Login/LoginPage.tsx";
+import {useContext} from "react";
+import {MainContext} from "./Services/State/MainContext.tsx";
 
 function App() {
 
-  const authService : IAuthenticationService = new AuthenticationService();
+  const {authService} = useContext(MainContext);
 
   return (
     <>
-      <LoginPage authService={authService}/>
+        <LoginPage authService={authService}/>
     </>
   );
 }

@@ -43,5 +43,9 @@ export class AuthenticationService implements IAuthenticationService {
         document.cookie = cookieValue;
     }
 
+    IsAuthorized() {
+        return this.isLoggedIn;
+    }
+
 
 }
