@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
-import {MainContext} from "./Services/State/MainContext.ts";
+import {MainContext, MainContextProvider} from "./Services/State/MainContext.tsx";
 import {DevSupport} from "@react-buddy/ide-toolbox";
 import {ComponentPreviews, useInitial} from "./dev";
 import {SettingsPage} from "./Pages/Settings/SettingsPage.tsx";
@@ -23,12 +23,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <MainContext.Provider value={{shit: ""}}>
+        <MainContextProvider>
             <DevSupport ComponentPreviews={ComponentPreviews}
                         useInitialHook={useInitial}
             >
                 <RouterProvider router={router}/>
             </DevSupport>
-        </MainContext.Provider>
+        </MainContextProvider>
     </React.StrictMode>,
 );
