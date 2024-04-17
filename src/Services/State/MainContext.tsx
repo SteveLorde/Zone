@@ -14,11 +14,9 @@ interface MainContextType {
 export const MainContext = createContext<MainContextType>({
     selectedTabNumber: 0,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setSelectedTab(_value: ((prevState: number) => number) | number): void {
-    },
+    setSelectedTab(_value: ((prevState: number) => number) | number): void {},
     authService: {} as AuthenticationService,
-    chatService: {} as ChatService,
-    isChatServiceConnected : false
+    chatService: {} as ChatService
 });
 
 export function MainContextProvider({children} : {children: JSX.Element}) {
@@ -28,17 +26,11 @@ export function MainContextProvider({children} : {children: JSX.Element}) {
 
     const [selectedTab, setSelectedTab] = useState(0);
 
-    /*
-    function SelectTab(tabNumber : number) {
-        setSelectedTab(tabNumber);
-    }
-     */
-
     const contextValue : MainContextType = {
         selectedTabNumber: selectedTab,
         setSelectedTab: setSelectedTab,
         authService: _authService,
-        chatService: _chatService,
+        chatService: _chatService
     };
 
     return <>

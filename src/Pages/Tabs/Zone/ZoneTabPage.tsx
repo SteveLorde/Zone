@@ -1,8 +1,10 @@
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Message} from "../../../Data/Models/Message.ts";
 import {useNavigate} from "react-router-dom";
 import {MainContext} from "../../../Services/State/MainContext.tsx";
 import {useForm} from "react-hook-form";
+import {User} from "../../../Data/Models/User.ts";
+import {Zone} from "../../../Data/Models/Zone.ts";
 
 
 interface JoinZoneRequest {
@@ -12,7 +14,9 @@ interface JoinZoneRequest {
 export function ZoneTabPage() {
     const {chatService} = useContext(MainContext);
     const navigation = useNavigate();
+    const [zone ,setZone] = useState<Zone>();
     const [isZoneJoined, setIsZoneJoined] = useState<boolean>(false);
+    const [zoneUsers, setZoneUsers] = useState<User[]>([]);
     const {register: joinZoneForm, handleSubmit : joinZoneSubmit} = useForm<JoinZoneRequest>();
     const [chatMessages, setChatMessages] = useState<Message[]>([]);
 
@@ -21,17 +25,36 @@ export function ZoneTabPage() {
 
 
     function JoinZone(joinZoneFormData : JoinZoneRequest) {
-        chatService.JoinZone(joinZoneFormData.zoneId);
+        const joinedZoneData = chatService.JoinZone(joinZoneFormData.zoneId);
+        setZone(joinedZoneData);
+        setIsZoneJoined(true);
+    }
+
+    function FindMessageUser(messageUserId : string) {
+        let user = {} as User;
+        for (let i = 0; i < zoneUsers.length - 1; i++) {
+            if (messageUserId === zoneUsers[i].id) {
+                user = zoneUsers[i];
+                break;
+            }
+        }
+        return user;
     }
 
     async function ListenToChat() {
-        const message = chatService.ListenToChat();
-        setChatMessages([...chatMessages,message]);
+        if (chatService.isChatServiceConnected) {
+            const message = chatService.ListenToChat();
+            setChatMessages([...chatMessages,message]);
+        }
     }
 
     function NavigateToCreateZone() {
         navigation("createzone");
     }
+
+    useEffect(() => {
+      ListenToChat();
+    });
 
     return (
         <>
@@ -49,7 +72,11 @@ export function ZoneTabPage() {
                     {/*Chat Block*/}
                     <div className={"messagewindow"}>
                         {chatMessages.map( (message : Message) =>
-                            <p className={"chatmessage"}>{message.content}</p>
+                            <div className={"message"}>
+
+                                <img className={"messageuseravatar"} src={`storage/${FindMessageUser(message.userId)}/`} alt={} />
+                                <p className={"messagecontent"}>{message.content}</p>
+                            </div>
                         )}
                     </div>
                     {/*Chat Input*/}

@@ -1,5 +1,5 @@
 import * as signalr from "@microsoft/signalr";
-import axios from "axios"
+import axios from "axios";
 import {Message} from "../../Data/Models/Message.ts";
 import {IChatService} from "./IChatService.ts";
 import {IAuthenticationService} from "../Authentication/IAuthenticationService.ts";
@@ -47,8 +47,17 @@ export class ChatService implements IChatService{
         return await axios.get<boolean>(`${this.backendUrl}/deletezone/${zoneId}`).then(res => res.data);
     }
 
-    JoinZone(zoneId: string): void {
+    JoinZone(zoneId: string): Zone {
         this.chatConnection.invoke('JoinZone', zoneId);
+        let zone : Zone = {} as Zone;
+        this.chatConnection.on("ZoneJoined", (joinedZone : Zone) => {
+            zone = joinedZone;
+        });
+        if (zone.id !== "") {
+            return zone;
+        } else {
+            return zone;
+        }
     }
 
      LeaveZone(zoneId: string): void {
