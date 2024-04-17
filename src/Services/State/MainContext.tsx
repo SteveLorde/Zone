@@ -17,7 +17,8 @@ export const MainContext = createContext<MainContextType>({
     setSelectedTab(_value: ((prevState: number) => number) | number): void {
     },
     authService: {} as AuthenticationService,
-    chatService: {} as ChatService
+    chatService: {} as ChatService,
+    isChatServiceConnected : false
 });
 
 export function MainContextProvider({children} : {children: JSX.Element}) {
@@ -37,7 +38,7 @@ export function MainContextProvider({children} : {children: JSX.Element}) {
         selectedTabNumber: selectedTab,
         setSelectedTab: setSelectedTab,
         authService: _authService,
-        chatService: _chatService
+        chatService: _chatService,
     };
 
     return <>

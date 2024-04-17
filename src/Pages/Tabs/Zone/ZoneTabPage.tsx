@@ -6,7 +6,7 @@ import {useForm} from "react-hook-form";
 
 
 interface JoinZoneRequest {
-
+    zoneId : string
 }
 
 export function ZoneTabPage() {
@@ -21,7 +21,12 @@ export function ZoneTabPage() {
 
 
     function JoinZone(joinZoneFormData : JoinZoneRequest) {
-        chatService.JoinZone();
+        chatService.JoinZone(joinZoneFormData.zoneId);
+    }
+
+    async function ListenToChat() {
+        const message = chatService.ListenToChat();
+        setChatMessages([...chatMessages,message]);
     }
 
     function NavigateToCreateZone() {
@@ -42,12 +47,17 @@ export function ZoneTabPage() {
                 {/*Chat Panel*/}
                 <div>
                     {/*Chat Block*/}
-                    <div>
-
+                    <div className={"messagewindow"}>
+                        {chatMessages.map( (message : Message) =>
+                            <p className={"chatmessage"}>{message.content}</p>
+                        )}
                     </div>
                     {/*Chat Input*/}
                     <div>
-                        <input type={"text"} />
+                        <input className={"messageinput"} type={"text"} />
+                        <button className={"submitmessagebutton"}>
+                            <img className={"submitmessagebuttonimage"} src=""  alt="submit message"/>
+                        </button>
                     </div>
                 </div>
 

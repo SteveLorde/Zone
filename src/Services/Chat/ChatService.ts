@@ -15,11 +15,16 @@ export class ChatService implements IChatService{
 
     backendUrl : string = process.env.BACKENDURL as string;
     chatConnection : signalr.HubConnection = {} as signalr.HubConnection;
+    isChatServiceConnected : boolean = false;
 
 
      Initialize() {
         this.chatConnection = new signalr.HubConnectionBuilder().withUrl(`${this.backendUrl}/chathub`, {transport: signalr.HttpTransportType.WebSockets, accessTokenFactory: () => this._authService.GetToken()}).build();
-        this.chatConnection.start();
+        this.chatConnection.start().then(() => this.isChatServiceConnected = true);
+    }
+
+    CloseConnection() {
+         this.chatConnection.stop().then(() => this.isChatServiceConnected = false);
     }
 
      ListenToChat() : Message {
