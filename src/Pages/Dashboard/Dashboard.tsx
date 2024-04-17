@@ -1,9 +1,9 @@
 import {Navbar} from "../../Components/Navbar/Navbar.tsx";
 import {MainContext,} from "../../Services/State/MainContext.tsx";
-import {ProfilePage} from "../Tabs/Profile/ProfilePage.tsx";
-import {ZonePage} from "../Tabs/Zone/ZonePage.tsx";
+import {ProfileTabPage} from "../Tabs/Profile/ProfileTabPage.tsx";
+import {ZoneTabPage} from "../Tabs/Zone/ZoneTabPage.tsx";
 import {SettingsPage} from "../Tabs/Settings/SettingsPage.tsx";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 
 export function Dashboard() {
     const {selectedTabNumber, chatService, authService} = useContext(MainContext);
@@ -11,16 +11,16 @@ export function Dashboard() {
 
     switch (selectedTabNumber) {
         case 0:
-            componentToRender = <ProfilePage />;
+            componentToRender = <ProfileTabPage />;
             break;
         case 1:
-            componentToRender = <ZonePage />;
+            componentToRender = <ZoneTabPage />;
             break;
         case 2:
             componentToRender = <SettingsPage/>;
             break;
         default:
-            componentToRender = <ProfilePage />;
+            componentToRender = <ProfileTabPage />;
     }
 
     function StartBackEndConnection() {
@@ -29,19 +29,9 @@ export function Dashboard() {
         }
     }
 
-    /*
-        const [loadedTab, setLoadedTab] = useState<number>(0);
-
-        function ViewTab(tabNumberToView: number) {
-        setLoadedTab(tabNumberToView);
-        }
-
-        useEffect(() => {
-        ViewTab(selectedTabNumber);
-        }, [selectedTabNumber]);
-     */
-
-
+    useEffect(() => {
+        StartBackEndConnection;
+    }, []);
 
     return (
         <>

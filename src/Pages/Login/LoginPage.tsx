@@ -4,11 +4,13 @@ import {IAuthenticationService} from "../../Services/Authentication/IAuthenticat
 import "./LoginPageStyle.module.scss";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import {CustomModal} from "../../Utilities/Modal/CustomModal.tsx";
 
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
     const {register : loginInput, handleSubmit : loginFormSubmit, watch, formState: { errors }} = useForm<AuthRequest>();
     const {register : registerInput, handleSubmit : registerFormSubmit, watch, formState: { errors }} = useForm<AuthRequest>();
+    const [isErrorLogin, setIsErrorLogin] = useState<boolean>(false);
     const routerNavigate = useNavigate();
 
     const [toggledLoginForm, setToggledForm] = useState<boolean>(true);
@@ -21,10 +23,10 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
     async function SubmitLogin(newLoginRequest : AuthRequest) {
         const res = await authService.Login(newLoginRequest);
         if (res) {
-            routerNavigate("joinzone");
+            routerNavigate("dashboard");
         }
         else {
-
+            setIsErrorLogin(true);
         }
     }
 
@@ -40,6 +42,9 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
 
     return (
         <>
+            {isErrorLogin && <CustomModal Type={isErrorLogin} Message={"Wrong Username Or Password"}/>}
+
+
             <div className={"flex flex-row gap-4 items-center"}>
                 {/*Image*/}
                 <img src={""} alt={"loginpage"} />

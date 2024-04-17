@@ -1,4 +1,4 @@
-export function ProfilePage() {
+export function ProfileTabPage() {
     return (
         <>
         </>
