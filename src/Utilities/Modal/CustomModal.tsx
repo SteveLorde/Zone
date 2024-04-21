@@ -1,5 +1,5 @@
 
-export function CustomModal({Type, Message} : {Type : boolean, Message : string}) {
+export function CustomModal({Type, Message, CloseWindow} : {Type : boolean, Message : string, CloseWindow: () => void}) {
 
     return (
         <>

@@ -3,13 +3,16 @@ import {AuthRequest} from "../../Data/Models/AuthRequest.ts";
 import {IAuthenticationService} from "../../Services/Authentication/IAuthenticationService.ts";
 import "./LoginPageStyle.module.scss";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {CustomModal} from "../../Utilities/Modal/CustomModal.tsx";
+import {MainContext} from "../../Services/State/MainContext.tsx";
 
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
+    const {} = useContext(MainContext);
     const {register : loginInput, handleSubmit : loginFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
     const {register : registerInput, handleSubmit : registerFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
+    const [didRegister , setDidRegister] = useState<boolean>(false);
     const [isErrorLogin, setIsErrorLogin] = useState<boolean>(false);
     const routerNavigate = useNavigate();
 
@@ -33,24 +36,25 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
     async function SubmitRegister(newRegisterRequest : AuthRequest) {
         const res = await authService.Register(newRegisterRequest);
         if (res) {
-
+            setDidRegister(true);
+            setToggledForm(true);
         }
         else {
-
+            setIsErrorLogin(true);
         }
     }
 
     return (
         <>
-            {isErrorLogin && <CustomModal Type={isErrorLogin} Message={"Wrong Username Or Password"}/>}
-
+            {isErrorLogin && <CustomModal Type={isErrorLogin} Message={"Wrong Username Or Password"} CloseWindow={}/>}
+            {didRegister && <p className={"text-green-500"}>register successful please login</p>}
 
             <div className={"flex flex-row gap-4 items-center"}>
                 {/*Image*/}
                 <img src={""} alt={"loginpage"} />
                 {/*Login Form*/}
                 <div className={"formarea"}>
-                    <button onClick={() => ToggleForm()}>Not Registered?</button>
+                    <button className={"toggleform"} onClick={() => ToggleForm()}>Not Registered?</button>
                     {toggledLoginForm && <form onSubmit={loginFormSubmit(SubmitLogin)}>
                         <input type={"text"} {...loginInput("username", {required: true})} aria-invalid={errors.username ? "true" : "false"} />
                         {errors.username?.type === "required" && (<p className={"text-red-500"}>username is required</p>)}
