@@ -52,14 +52,14 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                 <div className={"formarea"}>
                     <button onClick={() => ToggleForm()}>Not Registered?</button>
                     {toggledLoginForm && <form onSubmit={loginFormSubmit(SubmitLogin)}>
-                        <input type={"text"} {...loginInput("username")} />
-                        <input type={"text"} {...loginInput("password")} />
+                        <input type={"text"} {...loginInput("username", {required: true})} />
+                        <input type={"text"} {...loginInput("password", {required: true})} />
                         <input type={"submit"}/>
                     </form>}
 
                     {!toggledLoginForm && <form onSubmit={registerFormSubmit(SubmitRegister)}>
-                        <input type={"text"} {...registerInput("username")} />
-                        <input type={"text"} {...registerInput("password")} />
+                        <input type={"text"} {...registerInput("username", {required: true})} />
+                        <input type={"text"} {...registerInput("password", {required: true})} />
                         <input type={"submit"}/>
                     </form>}
                 </div>
