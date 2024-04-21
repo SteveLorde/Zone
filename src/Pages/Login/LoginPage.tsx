@@ -8,8 +8,8 @@ import {CustomModal} from "../../Utilities/Modal/CustomModal.tsx";
 
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
-    const {register : loginInput, handleSubmit : loginFormSubmit, watch, formState: { errors }} = useForm<AuthRequest>();
-    const {register : registerInput, handleSubmit : registerFormSubmit, watch, formState: { errors }} = useForm<AuthRequest>();
+    const {register : loginInput, handleSubmit : loginFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
+    const {register : registerInput, handleSubmit : registerFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
     const [isErrorLogin, setIsErrorLogin] = useState<boolean>(false);
     const routerNavigate = useNavigate();
 
@@ -52,14 +52,23 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                 <div className={"formarea"}>
                     <button onClick={() => ToggleForm()}>Not Registered?</button>
                     {toggledLoginForm && <form onSubmit={loginFormSubmit(SubmitLogin)}>
-                        <input type={"text"} {...loginInput("username", {required: true})} />
-                        <input type={"text"} {...loginInput("password", {required: true})} />
+                        <input type={"text"} {...loginInput("username", {required: true})} aria-invalid={errors.username ? "true" : "false"} />
+                        {errors.username?.type === "required" && (<p className={"text-red-500"}>username is required</p>)}
+                        <input type={"text"} {...loginInput("password", {required: true})} aria-invalid={errors.password ? "true" : "false"} />
+                        {errors.password?.type === "required" && (<p className={"text-red-500"}>password is required</p>)}
                         <input type={"submit"}/>
                     </form>}
 
                     {!toggledLoginForm && <form onSubmit={registerFormSubmit(SubmitRegister)}>
-                        <input type={"text"} {...registerInput("username", {required: true})} />
-                        <input type={"text"} {...registerInput("password", {required: true})} />
+                        <input type={"text"} {...registerInput("username", {required: true})}
+                               aria-invalid={errors.username ? "true" : "false"}/>
+                        {errors.username?.type === "required" && (<p className={"text-red-500"}>username is required</p>)}
+                        <input type={"text"} {...registerInput("password", {required: true})}
+                               aria-invalid={errors.password ? "true" : "false"}/>
+                        {errors.password?.type === "required" && (<p className={"text-red-500"}>password is required</p>)}
+                        <input type={"text"} {...registerInput("email", {required: true})}
+                               aria-invalid={errors.email ? "true" : "false"}/>
+                        {errors.email?.type === "required" && (<p className={"text-red-500"}>email is required</p>)}
                         <input type={"submit"}/>
                     </form>}
                 </div>
