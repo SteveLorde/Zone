@@ -4,12 +4,12 @@ import {IAuthenticationService} from "../../Services/Authentication/IAuthenticat
 import "./LoginPageStyle.module.scss";
 import {useNavigate} from "react-router-dom";
 import {useContext, useState} from "react";
-import {CustomModal} from "../../Utilities/Modal/CustomModal.tsx";
+import {CustomErrorModal} from "../../Utilities/Modal/CustomErrorModal.tsx";
 import {MainContext} from "../../Services/State/MainContext.tsx";
 
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
-    const {} = useContext(MainContext);
+    const {setErrorWindowVisible} = useContext(MainContext);
     const {register : loginInput, handleSubmit : loginFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
     const {register : registerInput, handleSubmit : registerFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
     const [didRegister , setDidRegister] = useState<boolean>(false);
@@ -41,12 +41,13 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
         }
         else {
             setIsErrorLogin(true);
+            setErrorWindowVisible(false);
         }
     }
 
     return (
         <>
-            {isErrorLogin && <CustomModal Type={isErrorLogin} Message={"Wrong Username Or Password"} CloseWindow={}/>}
+            {isErrorLogin && <CustomErrorModal Type={isErrorLogin} Message={"Wrong Username Or Password"} CloseWindow={}/>}
             {didRegister && <p className={"text-green-500"}>register successful please login</p>}
 
             <div className={"flex flex-row gap-4 items-center"}>
