@@ -14,7 +14,7 @@ export class ChatService implements IChatService{
         this._authService = authService;
     }
 
-    backendUrl : string = process.env.BACKENDURL as string;
+    backendUrl = import.meta.env.VITE_BACKENDURL as string;
     chatConnection : signalr.HubConnection = {} as signalr.HubConnection;
     isChatServiceConnected : boolean = false;
     joinedZoneId : string = "";

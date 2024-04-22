@@ -10,8 +10,8 @@ import {MainContext} from "../../../Services/State/MainContext.tsx";
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
     const {visibleErrorWindow , setErrorWindowVisible, closeErrorWindow} = useContext(MainContext);
-    const {register : loginInput, handleSubmit : loginFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
-    const {register : registerInput, handleSubmit : registerFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
+    const {register : loginInput, handleSubmit : loginFormSubmit,  formState: { errors : loginErrors}} = useForm<AuthRequest>();
+    const {register : registerInput, handleSubmit : registerFormSubmit,  formState: { errors : registerErrors}} = useForm<AuthRequest>();
     const [didRegister , setDidRegister] = useState<boolean>(false);
     const [isErrorLogin, setIsErrorLogin] = useState<boolean>(false);
     const routerNavigate = useNavigate();
@@ -57,23 +57,23 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                     <button className={"toggleform"} onClick={() => ToggleForm()}>Not Registered?</button>
                     {didRegister && <p className={"text-green-500"}>register successful please login</p>}
                     {toggledLoginForm && <form onSubmit={loginFormSubmit(SubmitLogin)}>
-                        <input type={"text"} {...loginInput("username", {required: true})} aria-invalid={errors.username ? "true" : "false"} />
-                        {errors.username?.type === "required" && (<p className={"text-red-500"}>username is required</p>)}
-                        <input type={"text"} {...loginInput("password", {required: true})} aria-invalid={errors.password ? "true" : "false"} />
-                        {errors.password?.type === "required" && (<p className={"text-red-500"}>password is required</p>)}
+                        <input type={"text"} {...loginInput("username", {required: true})} aria-invalid={loginErrors.username ? "true" : "false"} />
+                        {loginErrors.username?.type === "required" && (<p className={"text-red-500"}>username is required</p>)}
+                        <input type={"text"} {...loginInput("password", {required: true})} aria-invalid={loginErrors.password ? "true" : "false"} />
+                        {loginErrors.password?.type === "required" && (<p className={"text-red-500"}>password is required</p>)}
                         <input type={"submit"}/>
                     </form>}
 
                     {!toggledLoginForm && <form onSubmit={registerFormSubmit(SubmitRegister)}>
                         <input type={"text"} {...registerInput("username", {required: true})}
-                               aria-invalid={errors.username ? "true" : "false"}/>
-                        {errors.username?.type === "required" && (<p className={"text-red-500"}>username is required</p>)}
+                               aria-invalid={registerErrors.username ? "true" : "false"}/>
+                        {registerErrors.username?.type === "required" && (<p className={"text-red-500"}>username is required</p>)}
                         <input type={"text"} {...registerInput("password", {required: true})}
-                               aria-invalid={errors.password ? "true" : "false"}/>
-                        {errors.password?.type === "required" && (<p className={"text-red-500"}>password is required</p>)}
+                               aria-invalid={registerErrors.password ? "true" : "false"}/>
+                        {registerErrors.password?.type === "required" && (<p className={"text-red-500"}>password is required</p>)}
                         <input type={"text"} {...registerInput("email", {required: true})}
-                               aria-invalid={errors.email ? "true" : "false"}/>
-                        {errors.email?.type === "required" && (<p className={"text-red-500"}>email is required</p>)}
+                               aria-invalid={registerErrors.email ? "true" : "false"}/>
+                        {registerErrors.email?.type === "required" && (<p className={"text-red-500"}>email is required</p>)}
                         <input type={"submit"}/>
                     </form>}
                 </div>

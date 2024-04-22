@@ -6,7 +6,7 @@ import {User} from "../../Data/Models/User.ts";
 
 export class AuthenticationService implements IAuthenticationService {
 
-    backendUrl = process.env.BACKENDURL as string;
+    backendUrl = import.meta.env.VITE_BACKENDURL as string;
 
     isLoggedIn: boolean = false;
     activeUser: User = {} as User;

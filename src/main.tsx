@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
-import {Dashboard} from "./Pages/Dashboard/Dashboard.tsx";
+import {Dashboard} from "./Views/Pages/Dashboard/Dashboard.tsx";
 import {MainContextProvider} from "./Services/State/MainContextProvider.tsx";
 
 

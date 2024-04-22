@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 import {useContext} from "react";
-import {MainContext} from "../../Services/State/MainContext.tsx";
-import {NewZoneRequest} from "../../Data/Models/NewZoneRequest.ts";
+import {MainContext} from "../../../Services/State/MainContext.tsx";
+import {NewZoneRequest} from "../../../Data/Models/Requests/NewZoneRequest.ts";
 
 export function CreateZonePanel() {
     const {chatService} = useContext(MainContext);

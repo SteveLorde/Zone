@@ -1,5 +1,5 @@
 import './App.css';
-import {LoginPage} from "./Pages/Login/LoginPage.tsx";
+import {LoginPage} from "./Views/Pages/Login/LoginPage.tsx";
 import {useContext} from "react";
 import {MainContext} from "./Services/State/MainContext.tsx";
 
