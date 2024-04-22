@@ -1,4 +1,4 @@
-import {AuthRequest} from "../../Data/Models/AuthRequest.ts";
+import {AuthRequest} from "../../Data/Models/Requests/AuthRequest.ts";
 import {User} from "../../Data/Models/User.ts";
 
 export interface IAuthenticationService {

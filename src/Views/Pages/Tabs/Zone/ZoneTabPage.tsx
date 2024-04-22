@@ -1,10 +1,9 @@
-import {useContext, useEffect, useState} from "react";
-import {Message} from "../../../Data/Models/Message.ts";
+import {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {MainContext} from "../../../Services/State/MainContext.tsx";
+import {MainContext} from "../../../../Services/State/MainContext.tsx";
 import {useForm} from "react-hook-form";
-import {User} from "../../../Data/Models/User.ts";
-import {Zone} from "../../../Data/Models/Zone.ts";
+import {User} from "../../../../Data/Models/User.ts";
+import {Zone} from "../../../../Data/Models/Zone.ts";
 import {ChatPanel} from "../../../Components/ChatPanel/ChatPanel.tsx";
 import {Canvas} from "../../../Components/Canvas/Canvas.tsx";
 

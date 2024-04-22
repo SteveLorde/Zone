@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {MainContext} from "../../../Services/State/MainContext.tsx";
+import {MainContext} from "../../../../Services/State/MainContext.tsx";
 
 export function ProfileTabPage() {
 

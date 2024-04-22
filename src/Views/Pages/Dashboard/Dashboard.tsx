@@ -1,5 +1,5 @@
 import {Navbar} from "../../Components/Navbar/Navbar.tsx";
-import {MainContext,} from "../../Services/State/MainContext.tsx";
+import {MainContext,} from "../../../Services/State/MainContext.tsx";
 import {ProfileTabPage} from "../Tabs/Profile/ProfileTabPage.tsx";
 import {ZoneTabPage} from "../Tabs/Zone/ZoneTabPage.tsx";
 import {SettingsPage} from "../Tabs/Settings/SettingsPage.tsx";

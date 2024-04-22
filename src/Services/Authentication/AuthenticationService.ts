@@ -1,4 +1,4 @@
-import {AuthRequest} from "../../Data/Models/AuthRequest.ts";
+import {AuthRequest} from "../../Data/Models/Requests/AuthRequest.ts";
 import {IAuthenticationService} from "./IAuthenticationService.ts";
 import axios from "axios";
 import {AccessToken} from "../../Data/Models/AccessToken.ts";

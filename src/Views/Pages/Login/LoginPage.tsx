@@ -1,11 +1,11 @@
 import {useForm} from "react-hook-form";
-import {AuthRequest} from "../../Data/Models/AuthRequest.ts";
-import {IAuthenticationService} from "../../Services/Authentication/IAuthenticationService.ts";
+import {AuthRequest} from "../../../Data/Models/Requests/AuthRequest.ts";
+import {IAuthenticationService} from "../../../Services/Authentication/IAuthenticationService.ts";
 import "./LoginPageStyle.module.scss";
 import {useNavigate} from "react-router-dom";
 import {useContext, useState} from "react";
 import {CustomErrorModal} from "../../Components/Modals/CustomErrorModal.tsx";
-import {MainContext} from "../../Services/State/MainContext.tsx";
+import {MainContext} from "../../../Services/State/MainContext.tsx";
 
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {

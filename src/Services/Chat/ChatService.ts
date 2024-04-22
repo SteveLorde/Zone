@@ -4,7 +4,7 @@ import {Message} from "../../Data/Models/Message.ts";
 import {IChatService} from "./IChatService.ts";
 import {IAuthenticationService} from "../Authentication/IAuthenticationService.ts";
 import {Zone} from "../../Data/Models/Zone.ts";
-import {NewZoneRequest} from "../../Data/Models/NewZoneRequest.ts";
+import {NewZoneRequest} from "../../Data/Models/Requests/NewZoneRequest.ts";
 
 export class ChatService implements IChatService{
 
