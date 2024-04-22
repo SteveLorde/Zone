@@ -4,6 +4,7 @@ import {Message} from "../../Data/Models/Message.ts";
 import {IChatService} from "./IChatService.ts";
 import {IAuthenticationService} from "../Authentication/IAuthenticationService.ts";
 import {Zone} from "../../Data/Models/Zone.ts";
+import {NewZoneRequest} from "../../Data/Models/NewZoneRequest.ts";
 
 export class ChatService implements IChatService{
 
@@ -16,6 +17,7 @@ export class ChatService implements IChatService{
     backendUrl : string = process.env.BACKENDURL as string;
     chatConnection : signalr.HubConnection = {} as signalr.HubConnection;
     isChatServiceConnected : boolean = false;
+    joinedZoneId : string = "";
 
 
      Initialize() {
@@ -42,7 +44,7 @@ export class ChatService implements IChatService{
         this.chatConnection.invoke('SendMessage', chatMessage);
     }
 
-    async CreateZone(newZone : Zone): Promise<boolean> {
+    async CreateZone(newZone : NewZoneRequest): Promise<boolean> {
         return await axios.post<boolean>(`${this.backendUrl}/createzone`, newZone).then(res => res.data);
     }
 
@@ -57,6 +59,7 @@ export class ChatService implements IChatService{
             zone = joinedZone;
         });
         if (zone.id !== "") {
+            this.joinedZoneId = zone.id;
             return zone;
         } else {
             return zone;

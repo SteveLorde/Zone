@@ -2,12 +2,14 @@ import {AuthRequest} from "../../Data/Models/AuthRequest.ts";
 import {IAuthenticationService} from "./IAuthenticationService.ts";
 import axios from "axios";
 import {AccessToken} from "../../Data/Models/AccessToken.ts";
+import {User} from "../../Data/Models/User.ts";
 
 export class AuthenticationService implements IAuthenticationService {
 
     backendUrl = process.env.BACKENDURL as string;
 
     isLoggedIn: boolean = false;
+    activeUser: User = {} as User;
 
     async Login(authRequest: AuthRequest) : Promise<boolean>{
         return await axios.post<string>(`${this.backendUrl}/Login`, authRequest).then(tokenres => {
@@ -34,6 +36,10 @@ export class AuthenticationService implements IAuthenticationService {
         else {
             return "null";
         }
+    }
+
+    async GetLoggedUser() {
+        return await axios.get<User>(`${this.backendUrl}/authentication/getloggeduser`).then(res => this.activeUser = res.data);
     }
 
     SetCookie(accessToken : AccessToken) {
