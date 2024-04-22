@@ -5,3 +5,26 @@
   z-index: 10;
   transition: left 4s ease-in;
 }
+
+#ProfileBtn:hover {
+
+}
+
+#ZoneBtn:hover {
+
+}
+
+.navbarbtn {
+
+}
+
+.dropdownlist {
+  display: none;
+  position: absolute;
+  z-index: 99;
+}
+
+.navbarbtn1:hover .dropdown1,
+.navbarbtn2:hover .dropdown2 {
+  display: block;
+}

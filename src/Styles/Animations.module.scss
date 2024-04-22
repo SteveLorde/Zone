@@ -6,3 +6,21 @@
     opacity: 100;
   }
 }
+
+@keyframes floatFromLeft {
+  0% {
+    left: -1000px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes floatFromRight {
+  0% {
+    right: -1000px;
+  }
+  100% {
+    right: 0;
+  }
+}
