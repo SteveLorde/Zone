@@ -3,7 +3,7 @@ import {useContext} from "react";
 import {MainContext} from "../../Services/State/MainContext.tsx";
 import {NewZoneRequest} from "../../Data/Models/NewZoneRequest.ts";
 
-export function CreateZone() {
+export function CreateZonePanel() {
     const {chatService} = useContext(MainContext);
 
 
@@ -23,6 +23,7 @@ export function CreateZone() {
                 <form className={"flex flex-col gap-4"} onSubmit={submitNewZoneForm(SubmitNewZone)}>
                     <p>Zone Name</p>
                     <input {...newZoneForm("title")} />
+                    <input className={"p-3 bg-blue-500 text-white"} type={"submit"} value={"Create Zone"} />
                 </form>
             </div>
             <div className={"order-2 flex flex-col items-center"}>

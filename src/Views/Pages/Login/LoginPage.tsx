@@ -4,7 +4,7 @@ import {IAuthenticationService} from "../../Services/Authentication/IAuthenticat
 import "./LoginPageStyle.module.scss";
 import {useNavigate} from "react-router-dom";
 import {useContext, useState} from "react";
-import {CustomErrorModal} from "../../Utilities/Modal/CustomErrorModal.tsx";
+import {CustomErrorModal} from "../../Components/Modals/CustomErrorModal.tsx";
 import {MainContext} from "../../Services/State/MainContext.tsx";
 
 

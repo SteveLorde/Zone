@@ -4,9 +4,9 @@ import {User} from "../../Data/Models/User.ts";
 import {Zone} from "../../Data/Models/Zone.ts";
 import {IChatService} from "../../Services/Chat/IChatService.ts";
 import {IAuthenticationService} from "../../Services/Authentication/IAuthenticationService.ts";
-import "./Chat.module.scss";
+import "./ChatPanel.module.scss";
 
-export function Chat({zone, zoneUsers, chatService, authService} : {zone : Zone, zoneUsers: User[], chatService : IChatService, authService: IAuthenticationService}) {
+export function ChatPanel({zone, zoneUsers, chatService, authService} : {zone : Zone, zoneUsers: User[], chatService : IChatService, authService: IAuthenticationService}) {
     const [chatMessages, setChatMessages] = useState<Message[]>([]);
     const [inputMessage, setInputMessage] = useState<string>("");
 
@@ -45,9 +45,9 @@ export function Chat({zone, zoneUsers, chatService, authService} : {zone : Zone,
 
     return (
         <>
-            {/*Chat Panel*/}
+            {/*ChatPanel Panel*/}
             <div>
-                {/*Chat Block*/}
+                {/*ChatPanel Block*/}
                 <div className={"messagewindow"}>
                     {chatMessages.map( (message : Message) =>
                         <div className={"message"}>
@@ -56,7 +56,7 @@ export function Chat({zone, zoneUsers, chatService, authService} : {zone : Zone,
                         </div>
                     )}
                 </div>
-                {/*Chat Input*/}
+                {/*ChatPanel Input*/}
                 <div>
                     <input className={"messageinput"} type={"text"} onChange={(event) => HandleInputChange(event)} />
                     <button onClick={() => SendMessage()} className={"submitmessagebutton"}>
