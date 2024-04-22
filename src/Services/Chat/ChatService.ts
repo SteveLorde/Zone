@@ -21,6 +21,9 @@ export class ChatService implements IChatService{
      Initialize() {
         this.chatConnection = new signalr.HubConnectionBuilder().withUrl(`${this.backendUrl}/chathub`, {transport: signalr.HttpTransportType.WebSockets, accessTokenFactory: () => this._authService.GetToken()}).build();
         this.chatConnection.start().then(() => this.isChatServiceConnected = true);
+        this.chatConnection.on("connected", () => {
+            console.log("Backend Reporting Over :)");
+        });
     }
 
     CloseConnection() {

@@ -9,7 +9,7 @@ import {MainContext} from "../../Services/State/MainContext.tsx";
 
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
-    const {setErrorWindowVisible} = useContext(MainContext);
+    const {visibleErrorWindow , setErrorWindowVisible, closeErrorWindow} = useContext(MainContext);
     const {register : loginInput, handleSubmit : loginFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
     const {register : registerInput, handleSubmit : registerFormSubmit,  formState: { errors}} = useForm<AuthRequest>();
     const [didRegister , setDidRegister] = useState<boolean>(false);
@@ -41,14 +41,13 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
         }
         else {
             setIsErrorLogin(true);
-            setErrorWindowVisible(false);
+            setErrorWindowVisible(true);
         }
     }
 
     return (
         <>
-            {isErrorLogin && <CustomErrorModal Type={isErrorLogin} Message={"Wrong Username Or Password"} CloseWindow={}/>}
-            {didRegister && <p className={"text-green-500"}>register successful please login</p>}
+            {visibleErrorWindow && <CustomErrorModal Type={isErrorLogin} Message={"Wrong Username Or Password"} CloseWindow={closeErrorWindow}/>}
 
             <div className={"flex flex-row gap-4 items-center"}>
                 {/*Image*/}
@@ -56,6 +55,7 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                 {/*Login Form*/}
                 <div className={"formarea"}>
                     <button className={"toggleform"} onClick={() => ToggleForm()}>Not Registered?</button>
+                    {didRegister && <p className={"text-green-500"}>register successful please login</p>}
                     {toggledLoginForm && <form onSubmit={loginFormSubmit(SubmitLogin)}>
                         <input type={"text"} {...loginInput("username", {required: true})} aria-invalid={errors.username ? "true" : "false"} />
                         {errors.username?.type === "required" && (<p className={"text-red-500"}>username is required</p>)}
