@@ -24,7 +24,7 @@ export const MainContext = createContext<MainContextType>({
     closeErrorWindow: () => {}
 });
 
-export function MainContextProvider({children} : {children: JSX.Element}) {
+export function MainContextProvider({children} : {children: React.ReactElement}) {
 
     const _authService : IAuthenticationService = new AuthenticationService();
     const _chatService : IChatService = new ChatService(_authService);

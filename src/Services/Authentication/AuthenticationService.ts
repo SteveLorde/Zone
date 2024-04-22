@@ -39,8 +39,7 @@ export class AuthenticationService implements IAuthenticationService {
     SetCookie(accessToken : AccessToken) {
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + accessToken.expirationDate);
-        const cookieValue = encodeURIComponent("token") + "=" + encodeURIComponent(accessToken.accessToken) + "; expires=" + expirationDate.toUTCString() + "; path=/";
-        document.cookie = cookieValue;
+        document.cookie = encodeURIComponent("token") + "=" + encodeURIComponent(accessToken.accessToken) + "; expires=" + expirationDate.toUTCString() + "; path=/";
     }
 
     IsAuthorized() {
