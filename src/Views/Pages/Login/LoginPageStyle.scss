@@ -1,0 +1,60 @@
+.loginpage {
+  display: flex;
+  flex-direction:row;
+  gap: 100px;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
+
+  animation: customFade 1s ease-in;
+}
+
+.toggleform {
+  padding: 10px;
+  background-color: #3f98ff;
+  border-radius: 60px;
+}
+
+.toggleform:hover {
+  cursor: pointer;
+}
+
+
+.formarea {
+
+}
+
+.loginimage {
+  width: 500px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.forminputtitle {
+  color: #3f98ff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.formsubmitinput {
+  padding: 10px;
+  background-color: #3f98ff;
+  border-radius: 60px;
+}
+
+.formsubmitinput:hover {
+  cursor: pointer;
+}
+
+.forminput {
+  color: #3f98ff;
+  background-color: transparent;
+  border: 2px solid #3f98ff;
+  border-radius: 20px;
+  padding: 5px;
+}
