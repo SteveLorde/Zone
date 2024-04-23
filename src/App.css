@@ -1,4 +1,5 @@
-@import "Styles/Animations.module.scss";
+@import "Styles/Animations.scss";
+@Import "Styles/Global.scss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

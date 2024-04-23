@@ -12,7 +12,7 @@
 
 .toggleform {
   padding: 10px;
-  background-color: #3f98ff;
+  background-color: $primary-color;
   border-radius: 60px;
 }
 
@@ -36,14 +36,15 @@
 }
 
 .forminputtitle {
-  color: #3f98ff;
-  font-size: 24px;
+  color: $primary-color;
+  font-size: $primary-font-size;
   font-weight: bold;
 }
 
 .formsubmitinput {
   padding: 10px;
-  background-color: #3f98ff;
+  font-size: $primary-font-size;
+  background-color: $primary-color;
   border-radius: 60px;
 }
 
@@ -52,9 +53,9 @@
 }
 
 .forminput {
-  color: #3f98ff;
+  color: $primary-color;
   background-color: transparent;
-  border: 2px solid #3f98ff;
+  border: 2px solid $primary-color;
   border-radius: 20px;
   padding: 5px;
 }
