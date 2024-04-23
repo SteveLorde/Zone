@@ -10,6 +10,9 @@ export class AuthenticationService implements IAuthenticationService {
 
     isLoggedIn: boolean = false;
     activeUser: User = {} as User;
+    customHeaders = {
+      'Authorization': `Bearer ${localStorage.getItem('usertoken')}`
+    };
 
     async Login(authRequest: AuthRequest) : Promise<boolean>{
         return await axios.post<string>(`${this.backendUrl}/Login`, authRequest).then(tokenres => {
@@ -39,7 +42,7 @@ export class AuthenticationService implements IAuthenticationService {
     }
 
     async GetLoggedUser() {
-        return await axios.get<User>(`${this.backendUrl}/authentication/getloggeduser`).then(res => this.activeUser = res.data);
+        return await axios.get<User>(`${this.backendUrl}/authentication/getloggeduser`, {headers: this.customHeaders}).then(res => this.activeUser = res.data);
     }
 
     SetCookie(accessToken : AccessToken) {
