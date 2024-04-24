@@ -93,7 +93,7 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                 </div>
                 <div className={"loginpagefooter"}>
                     {/*Footer Logo*/}
-                    <img className={"logo"} src={"public/UI/Logo.svg"} alt={"Zone"}/>
+                    <img className={"logo"} src={"UI/Logo.svg"} alt={"Zone"}/>
                 </div>
             </div>
         </>
