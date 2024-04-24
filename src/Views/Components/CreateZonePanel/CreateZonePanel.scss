@@ -1,0 +1,30 @@
+@import "../../../Styles/Global";
+
+.header {
+  font-size: 3em;
+  color: $secondary-fontcolor;
+}
+
+.formtitle {
+  font-size: 1em;
+  color: $secondary-fontcolor;
+}
+
+.forminput {
+  border: 0 none;
+
+}
+
+.formsubmitbtn {
+
+}
+
+.forminput:focus {
+  border-bottom: 1px solid $primary-color;
+}
+
+.rightsideimg {
+  width: 10%;
+  position: absolute;
+  z-index: -99;
+}

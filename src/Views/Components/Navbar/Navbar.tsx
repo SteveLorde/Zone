@@ -1,4 +1,4 @@
-import "./NavbarStyle.module.scss";
+import "./NavbarStyle.scss";
 import {useContext} from "react";
 import {MainContext} from "../../../Services/State/MainContext.tsx";
 
@@ -21,10 +21,10 @@ export function Navbar() {
     }
 
     return <>
-        <div className="grid grid-cols-3 gap-4 place-items-center bg-blue-500">
-            <img className="" onClick={() => ToggleMenu()} id="MenuButton" src="" alt="navmenu"/>
-            <div id="NavMenu" className="navbarmenu bg-blue-500">
-                <ul>
+        <div className="navbar">
+            <img className="sidemenubtn" onClick={() => ToggleMenu()} id="MenuButton" src="public/UI/SideMenuButton.svg" alt="navmenu"/>
+            <div id="NavMenu" className="navbarmenu">
+                <ul className={"navlinks"}>
                     <li>
                         <button id="ProfileBtn" className={"navbarbtn navbarbtn1"} onClick={() => SelectTab(0)}>Profile</button>
                         <ul className={"dropdownlist dropdown1"}>

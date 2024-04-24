@@ -6,9 +6,11 @@ export interface IChatService {
     isChatServiceConnected : boolean
     Initialize() : void
     ListenToChat() : Message
-    CreateZone(newZone : NewZoneRequest) : Promise<boolean>
+    CreateZone(newZone : NewZoneRequest) : Promise<string>
     DeleteZone(zoneId : string) : Promise<boolean>
-    JoinZone(zoneId: string) : Zone
+    SetJoinedZone(zoneId: string) : void
+    JoinZone(zoneId:string) : Zone
     LeaveZone(zoneId : string): void
     SendMessage(chatMessage : Message) : void
+    IsJoinedZone() : string
 }

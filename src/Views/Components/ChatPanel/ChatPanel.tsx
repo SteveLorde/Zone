@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
-import {Message} from "../../Data/Models/Message.ts";
-import {User} from "../../Data/Models/User.ts";
-import {Zone} from "../../Data/Models/Zone.ts";
-import {IChatService} from "../../Services/Chat/IChatService.ts";
-import {IAuthenticationService} from "../../Services/Authentication/IAuthenticationService.ts";
+import {Message} from "../../../Data/Models/Message.ts";
+import {User} from "../../../Data/Models/User.ts";
+import {Zone} from "../../../Data/Models/Zone.ts";
+import {IChatService} from "../../../Services/Chat/IChatService.ts";
+import {IAuthenticationService} from "../../../Services/Authentication/IAuthenticationService.ts";
 import "./ChatPanel.module.scss";
 
 export function ChatPanel({zone, zoneUsers, chatService, authService} : {zone : Zone, zoneUsers: User[], chatService : IChatService, authService: IAuthenticationService}) {

@@ -44,8 +44,8 @@ export class ChatService implements IChatService{
         this.chatConnection.invoke('SendMessage', chatMessage);
     }
 
-    async CreateZone(newZone : NewZoneRequest): Promise<boolean> {
-        return await axios.post<boolean>(`${this.backendUrl}/createzone`, newZone).then(res => res.data);
+    async CreateZone(newZone : NewZoneRequest): Promise<string> {
+        return await axios.post<string>(`${this.backendUrl}/createzone`, newZone).then(res => res.data);
     }
 
     async DeleteZone(zoneId : string) : Promise<boolean> {
@@ -58,15 +58,23 @@ export class ChatService implements IChatService{
         this.chatConnection.on("ZoneJoined", (joinedZone : Zone) => {
             zone = joinedZone;
         });
-        if (zone.id !== "") {
-            this.joinedZoneId = zone.id;
+        if (zone.id !== "" && zone.id == zoneId) {
+            this.SetJoinedZone(zone.id);
             return zone;
         } else {
             return zone;
         }
     }
 
-     LeaveZone(zoneId: string): void {
+    SetJoinedZone(zoneId: string): void {
+         this.joinedZoneId = zoneId;
+    }
+
+    IsJoinedZone() {
+         return this.joinedZoneId;
+    }
+
+    LeaveZone(zoneId: string): void {
         this.chatConnection.invoke('LeaveZone', zoneId);
     }
 
