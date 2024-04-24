@@ -30,7 +30,7 @@ export function CreateZonePanel() {
                 </form>
             </div>
             <div className={"order-2 flex flex-col items-center"}>
-                <img className={"rightsideimg hidden md:block"} src="public/UI/CreateZoneForm.svg" alt={"createzoneform"} />
+                <img className={"rightsideimg hidden md:block"} src="UI/CreateZoneForm.svg" alt={"createzoneform"} />
             </div>
         </div>
 

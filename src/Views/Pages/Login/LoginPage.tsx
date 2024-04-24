@@ -52,7 +52,7 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
             <div className={"loginpage"}>
                 <div className={"loginpanel"}>
                     {/*Image*/}
-                    <img className={"loginimage"} src={"public/UI/LoginForm.svg"} alt={"loginpage"} />
+                    <img className={"loginimage"} src={"UI/LoginForm.svg"} alt={"loginpage"} />
                     {/*Login Form*/}
                     <div className={"formarea"}>
                         <button className={"toggleform"} onClick={() => ToggleForm()}>Not Registered?</button>
