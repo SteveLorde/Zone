@@ -1,12 +1,10 @@
 import {useContext, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {MainContext} from "../../../../Services/State/MainContext.tsx";
 import {useForm} from "react-hook-form";
 import {User} from "../../../../Data/Models/User.ts";
 import {Zone} from "../../../../Data/Models/Zone.ts";
 import {ChatPanel} from "../../../Components/ChatPanel/ChatPanel.tsx";
 import {Canvas} from "../../../Components/Canvas/Canvas.tsx";
-import {ChatService} from "../../../../Services/Chat/ChatService.ts";
 
 
 interface JoinZoneRequest {
@@ -15,7 +13,6 @@ interface JoinZoneRequest {
 
 export function ZoneTabPage() {
     const {chatService, authService, setSelectedTab} = useContext(MainContext);
-    const navigation = useNavigate();
     const [zone ,setZone] = useState<Zone>({} as Zone);
     const [isZoneJoined, setIsZoneJoined] = useState<boolean>(false);
     const [zoneUsers, setZoneUsers] = useState<User[]>([]);
@@ -31,6 +28,7 @@ export function ZoneTabPage() {
     function JoinZone(joinZoneFormData : JoinZoneRequest) {
         const joinedZoneData = chatService.JoinZone(joinZoneFormData.zoneId);
         setZone(joinedZoneData);
+        setZoneUsers(joinedZoneData.joinedUsers);
         setIsZoneJoined(true);
     }
     
