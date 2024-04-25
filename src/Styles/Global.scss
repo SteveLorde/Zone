@@ -1,7 +1,27 @@
 $primary-font-size: 1em;
 $secondary-font-size: 1em;
-$primary-color: #0088E2;
+$primary-color: #fafafa;
+$secondary-color: #0088E2;
 $primary-fontcolor: #ffff;
-$secondary-fontcolor: #gggg;
+$secondary-fontcolor: #0088E2;
 $primary-font-weight: bold;
 $seconday-font-weight: bold;
+
+.appbtn {
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 12px;
+  color: $primary-fontcolor;
+  background-color: $secondary-color;
+}
+
+.forminput {
+  padding: 5px;
+  color: $secondary-fontcolor;
+  background-color: white;
+  border: 2px solid $secondary-color;
+}
+
+.forminput:focus {
+  outline: none;
+}

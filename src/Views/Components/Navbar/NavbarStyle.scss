@@ -1,42 +1,42 @@
 @import "../../../Styles/Global";
 
-.navbarmenu {
-  display: none;
-  position: absolute;
-  left: -1000px;
-  z-index: 10;
-  transition: left 4s ease-in;
-}
-
-#ProfileBtn:hover {
-
-}
-
-#ZoneBtn:hover {
-
-}
 
 .navbar {
-  padding: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20vw;
+  padding-right: 20vw;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+
+}
+
+.navbarmenu {
+  position: absolute;
+  width: 200px;
+  height: 100vh;
   background-color: $primary-color;
+  left: -1000px;
+  z-index: 999;
+  transition: left 1s ease-in;
 }
 
 .sidemenubtn {
-
+  cursor: pointer;
+  width: 50px;
 }
 
-.navlinks {
-
+.navbardesktopbtn {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: $secondary-fontcolor;
 }
-
 
 .navbarbtn {
-  color: $primary-fontcolor;
+
 }
 
 .dropdownlist {

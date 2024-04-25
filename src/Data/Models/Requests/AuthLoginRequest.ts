@@ -1,5 +1,5 @@
 export interface AuthLoginRequest {
-    username : string
+    userName : string
     password : string
     zoneId : string
     email? : string

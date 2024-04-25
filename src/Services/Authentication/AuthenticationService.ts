@@ -3,10 +3,11 @@ import {IAuthenticationService} from "./IAuthenticationService.ts";
 import axios from "axios";
 import {AccessToken} from "../../Data/Models/AccessToken.ts";
 import {User} from "../../Data/Models/User.ts";
+import {backendUrl} from "../API.ts";
 
 export class AuthenticationService implements IAuthenticationService {
 
-    backendUrl = import.meta.env.VITE_BACKENDURL as string;
+    backendUrl = backendUrl;
 
     isLoggedIn: boolean = false;
     activeUser: User = {} as User;
@@ -15,7 +16,7 @@ export class AuthenticationService implements IAuthenticationService {
     };
 
     async Login(authRequest: AuthRequest) : Promise<boolean>{
-        return await axios.post<string>(`${this.backendUrl}/Login`, authRequest).then(tokenres => {
+        return await axios.post<string>(`${this.backendUrl}/authentication/login`, authRequest).then(tokenres => {
             if (tokenres.data !== "") {
                 this.isLoggedIn = true;
                 localStorage.setItem('useraccesstoken', tokenres.data);
@@ -28,7 +29,7 @@ export class AuthenticationService implements IAuthenticationService {
     }
 
     async Register(authRequest: AuthRequest): Promise<boolean> {
-        return await axios.post<boolean>(`${this.backendUrl}/Register`, authRequest).then(res => res.data);
+        return await axios.post<boolean>(`${this.backendUrl}/authentication/register`, authRequest).then(res => res.data);
     }
 
     GetToken(): string {

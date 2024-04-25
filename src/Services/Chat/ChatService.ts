@@ -5,6 +5,7 @@ import {IChatService} from "./IChatService.ts";
 import {IAuthenticationService} from "../Authentication/IAuthenticationService.ts";
 import {Zone} from "../../Data/Models/Zone.ts";
 import {NewZoneRequest} from "../../Data/Models/Requests/NewZoneRequest.ts";
+import {backendUrl} from "../API.ts";
 
 export class ChatService implements IChatService{
 
@@ -14,7 +15,7 @@ export class ChatService implements IChatService{
         this._authService = authService;
     }
 
-    backendUrl = import.meta.env.VITE_BACKENDURL as string;
+    backendUrl = backendUrl;
     chatConnection : signalr.HubConnection = {} as signalr.HubConnection;
     isChatServiceConnected : boolean = false;
     joinedZoneId : string = "";

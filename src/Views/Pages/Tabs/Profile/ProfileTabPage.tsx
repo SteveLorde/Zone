@@ -7,9 +7,10 @@ export function ProfileTabPage() {
 
     return (
         <>
+            <p>PROFILE PAGE TEST</p>
             <div className={"flex flex-row flex-wrap gap-4"}>
                 <div className={""}>
-                    <img src="" alt={""} />
+                    <img src={`${authService.backendUrl}/storage/users/${authService.activeUser.id}/profilepic.png`} alt={""} />
                 </div>
                 <div>
                     <h2>{authService.activeUser.userName}</h2>
