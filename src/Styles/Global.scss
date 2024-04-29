@@ -78,9 +78,10 @@ input:-webkit-autofill:active{
 }
 
 .tab {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: $primary-color;
-  margin: 10px;
+  margin: 15px;
   padding: 20px;
 }

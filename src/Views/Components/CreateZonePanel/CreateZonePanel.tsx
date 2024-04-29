@@ -19,7 +19,7 @@ export function CreateZonePanel() {
     const {register: newZoneForm, handleSubmit: submitNewZoneForm} = useForm<NewZoneRequest>();
 
     return <>
-        <div className={"grid grid-cols-2 gap-4 place-items-center bg-white m-4 p-4"}>
+        <div className={"flex flex-col md:grid grid-cols-2 gap-4 bg-white m-4 p-4 h-[100vh]"}>
 
             <div className={"order-1 flex flex-col gap-4 items-center"}>
                 <button className={"appbtn"} onClick={() => setSelectedTab(1)}>Back</button>
