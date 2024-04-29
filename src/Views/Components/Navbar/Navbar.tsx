@@ -24,7 +24,7 @@ export function Navbar() {
 
     return <>
         {/*Mobile Navbar*/}
-        <div className="navbar">
+        <div className="navbar hidden sm:flex">
             <button onClick={() => SelectTab(0)}>
                 <img className={"w-[60px]"} src={"UI/Logo.svg"} alt={"Zone"}/>
             </button>
@@ -36,7 +36,7 @@ export function Navbar() {
         </div>
 
         {/*Mobile Navbar*/}
-        <div className={"md:hidden relative"}>
+        <div className={"flex md:hidden relative"}>
             <div className={"flex flex-row items-center"}>
             <img className="sidemenubtn" onClick={() => ToggleMenu()} id="MenuButton" src="UI/SideMenuButton.svg" alt="navmenu"/>
             </div>

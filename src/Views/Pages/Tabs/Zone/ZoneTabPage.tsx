@@ -49,7 +49,7 @@ export function ZoneTabPage() {
     return (
         <>
             {!isZoneJoined && <div className={"flex flex-col gap-3 items-center"}>
-                <form className={"flex flex-col items-center gap-3"} onSubmit={joinZoneSubmit(JoinZone)}>
+                <form className={"flex flex-col items-center gap-4"} onSubmit={joinZoneSubmit(JoinZone)}>
                     <input className={"forminput"} type={"text"} placeholder={"insert zone id"} {...joinZoneForm("zoneId")} />
                     <input className={"appbtn"} type={"submit"} value={"Join Zone"} />
                 </form>

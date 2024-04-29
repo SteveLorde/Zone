@@ -15,7 +15,14 @@ $seconday-font-weight: bold;
   background-color: $secondary-color;
 }
 
+.backbtn {
+  padding: 5px;
+  color: white;
+  background-color: $secondary-color;
+}
+
 .forminput {
+  border-radius: 0px;
   padding: 5px;
   color: $secondary-fontcolor;
   background-color: white;
@@ -23,5 +30,5 @@ $seconday-font-weight: bold;
 }
 
 .forminput:focus {
-  outline: none;
+  outline: $secondary-color solid 2px;
 }

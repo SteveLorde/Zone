@@ -60,7 +60,7 @@ export function ChatPanel({zone, zoneUsers, chatService, authService} : {zone : 
                 <div>
                     <input className={"messageinput"} type={"text"} onChange={(event) => HandleInputChange(event)} />
                     <button onClick={() => SendMessage()} className={"submitmessagebutton"}>
-                         <img className={"submitmessagebuttonimage"} src="public/UI/ChatInputButton.svg"  alt="submit message"/>
+                         <img className={"submitmessagebuttonimage"} src="../../../assets/UI/ChatInputButton.svg" alt="submit message"/>
                     </button>
                 </div>
             </div>
