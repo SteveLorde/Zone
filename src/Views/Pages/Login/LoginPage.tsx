@@ -55,39 +55,39 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                     <img className={"loginimage"} src={"UI/LoginForm.svg"} alt={"loginpage"} />
                     {/*Login Form*/}
                     <div className={"formarea"}>
-                        <button className={"toggleform"} onClick={() => ToggleForm()}>Not Registered?</button>
+                        <button className={"appbtn"} onClick={() => ToggleForm()}>Not Registered?</button>
                         {didRegister && <p className={"text-green-500"}>register successful please login</p>}
                         {toggledLoginForm && <form className="form" onSubmit={loginFormSubmit(SubmitLogin)}>
                             <p className={"forminputtitle"}>Username</p>
-                            <input className={"forminput"} type={"text"} {...loginInput("username", {required: true})}
-                                   aria-invalid={loginErrors.username ? "true" : "false"}/>
-                            {loginErrors.username?.type === "required" && (
+                            <input className={"forminput2"} type={"text"} placeholder={"Username..."} {...loginInput("userName", {required: true})}
+                                   aria-invalid={loginErrors.userName ? "true" : "false"}/>
+                            {loginErrors.userName?.type === "required" && (
                                 <p className={"text-red-500"}>username is required</p>)}
                             <p className={"forminputtitle"}>Password</p>
-                            <input className={"forminput"} type={"text"} {...loginInput("password", {required: true})}
+                            <input className={"forminput2"} type={"text"} placeholder={"Password..."} {...loginInput("password", {required: true})}
                                    aria-invalid={loginErrors.password ? "true" : "false"}/>
                             {loginErrors.password?.type === "required" && (
                                 <p className={"text-red-500"}>password is required</p>)}
-                            <input className={"formsubmitinput"} type={"submit"} value="Login"/>
+                            <input className={"appbtn"} type={"submit"} value="Login"/>
                         </form>}
 
                         {!toggledLoginForm && <form className={"form"} onSubmit={registerFormSubmit(SubmitRegister)}>
                             <p className={"forminputtitle"}>Username</p>
-                            <input className={"forminput"} type={"text"} {...registerInput("username", {required: true})}
-                                   aria-invalid={registerErrors.username ? "true" : "false"}/>
-                            {registerErrors.username?.type === "required" && (
+                            <input className={"forminput2"} type={"text"} placeholder={"Username..."} {...registerInput("userName", {required: true})}
+                                   aria-invalid={registerErrors.userName ? "true" : "false"}/>
+                            {registerErrors.userName?.type === "required" && (
                                 <p className={"text-red-500"}>username is required</p>)}
                             <p className={"forminputtitle"}>Password</p>
-                            <input className={"forminput"} type={"text"} {...registerInput("password", {required: true})}
+                            <input className={"forminput2"} type={"text"} placeholder={"Password..."} {...registerInput("password", {required: true})}
                                    aria-invalid={registerErrors.password ? "true" : "false"}/>
                             {registerErrors.password?.type === "required" && (
                                 <p className={"text-red-500"}>password is required</p>)}
                             <p className={"forminputtitle"}>Email</p>
-                            <input className={"forminput"} type={"text"} {...registerInput("email", {required: true})}
+                            <input className={"forminput2"} type={"text"} placeholder={"Email..."} {...registerInput("email", {required: true})}
                                    aria-invalid={registerErrors.email ? "true" : "false"}/>
                             {registerErrors.email?.type === "required" && (
                                 <p className={"text-red-500"}>email is required</p>)}
-                            <input className={"formsubmitinput"} type={"submit"} value={"Register"}/>
+                            <input className={"appbtn"} type={"submit"} value={"Register"}/>
                         </form>}
                     </div>
                 </div>

@@ -1,0 +1,34 @@
+{/*Mobile Navbar*/}
+    <div className={"flex md:hidden relative"}>
+        <div className={"flex flex-row items-center"}>
+            <img className="sidemenubtn" onClick={() => ToggleMenu()} id="MenuButton" src="UI/SideMenuButton.svg"
+                 alt="navmenu"/>
+        </div>
+        {/*Mobile Menu*/}
+        <div id="NavMenu" style={{left: mobileMenuLeftCSSProperty}} ref={navMenu} className="navbarmenu">
+            <ul className={"navlinks"}>
+                <li>
+                    <button id="ProfileNavBtn" className={"navbarbtn navbarbtn1"} onClick={() => SelectTab(0)}>
+                        {authService.isLoggedIn ?
+                            <img className={"navicon"}
+                                 src={`${backendUrl}/storage/users/${authService.activeUser.id}/profilepic.png`}
+                                 alt={"profileicon"}/> :
+                            <img className={"navicon"} src="UI/ProfileNavIcon.svg" alt={"profileicon"}/>}
+                        <p>Profile</p>
+                    </button>
+                </li>
+                <li>
+                    <button id="ZoneNavBtn" className={"navbarbtn navbarbtn2"} onClick={() => SelectTab(1)}>
+                            <img className={"navicon"} src="UI/ChatNavIcon.svg" alt={"zoneicon"}/>
+                            <p>Zone</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button id="SettingsNavBtn" className={"navbarbtn navbarbtn2"} onClick={() => SelectTab(2)}>
+                            <img className={"navicon"} src="UI/SettingsNavIcon.svg" alt={"zoneicon"}/>
+                            <p>Settings</p>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>

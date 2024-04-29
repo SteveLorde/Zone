@@ -1,4 +1,5 @@
 import "../../../Styles/Global.scss";
+import "./Dashboard.scss";
 import {Navbar} from "../../Components/Navbar/Navbar.tsx";
 import {MainContext,} from "../../../Services/State/MainContext.tsx";
 import {ProfileTabPage} from "../Tabs/Profile/ProfileTabPage.tsx";
@@ -49,12 +50,10 @@ export function Dashboard() {
 
     return (
         <>
-            <div className={"flex flex-col"}>
+            <div className={"dashboard-container"}>
                 <Navbar/>
-                <div className={"p-5"}>
-                    {/*Dashboard Tab Component to View*/}
-                    {componentToRender}
-                </div>
+                {/*Dashboard Tab Component to View*/}
+                {componentToRender}
             </div>
         </>
     );

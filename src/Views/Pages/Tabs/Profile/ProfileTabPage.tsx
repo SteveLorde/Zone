@@ -1,6 +1,7 @@
+import "./ProfileTab.scss";
 import {useContext, useRef} from "react";
 import {MainContext} from "../../../../Services/State/MainContext.tsx";
-import {ProfilePicFallBack} from "../../../../Utilities/NullPic/ImageFallBack.ts";
+//import {ProfilePicFallBack} from "../../../../Utilities/NullPic/ImageFallBack.ts";
 
 export function ProfileTabPage() {
 
@@ -9,14 +10,13 @@ export function ProfileTabPage() {
 
     return (
         <>
-            <p>PROFILE PAGE TEST</p>
-            <div className={"flex flex-row flex-wrap gap-4"}>
+            <div className={"tab"}>
                 <div className={""}>
-                    <img ref={profilePicElement} src={`${authService.backendUrl}/storage/users/${authService.activeUser.id}/profilepic.png`} alt={""} onError={() => ProfilePicFallBack(profilePicElement)} />
+                    {authService.isLoggedIn ? <img className="profilepic" ref={profilePicElement} src={`${authService.backendUrl}/storage/users/${authService.activeUser.id}/profilepic.png`} alt={""}/> : <img className="profilepic" src="UI/nulluserpic.svg" alt={"profilepic"} /> }
                 </div>
                 <div>
-                    <h2>{authService.activeUser.userName}</h2>
-                    {/*<p>{authService.activeUser.joinedon}</p>*/}
+                    <h2 className={"text1"}>{authService.activeUser.userName}</h2>
+                    <p className={"text1"}>{authService.activeUser.registeredDate}</p>
                 </div>
             </div>
         </>

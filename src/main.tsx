@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
-import './index.css';
+import './Styles/Global.scss';
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import {Dashboard} from "./Views/Pages/Dashboard/Dashboard.tsx";
 import {MainContextProvider} from "./Services/State/MainContextProvider.tsx";

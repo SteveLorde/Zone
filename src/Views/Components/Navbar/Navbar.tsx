@@ -1,13 +1,15 @@
 import "./NavbarStyle.scss";
-import {useContext, useRef, useState} from "react";
+import {useContext} from "react";
 import {MainContext} from "../../../Services/State/MainContext.tsx";
+import {backendUrl} from "../../../Services/API.ts";
 
 export function Navbar() {
-    const {setSelectedTab} = useContext(MainContext);
-    const [mobileMenuLeftCSSProperty, setMobileMenuLeftCSSProperty] = useState('-1000px');
-    const navMenu = useRef<HTMLDivElement>(null);
+    const {setSelectedTab, authService} = useContext(MainContext);
+    //const [mobileMenuLeftCSSProperty, setMobileMenuLeftCSSProperty] = useState('-1000px');
+    //const navMenu = useRef<HTMLDivElement>(null);
 
-    function ToggleMenu() {
+    /*
+        function ToggleMenu() {
         if (navMenu.current?.style.left === '0px') {
             setMobileMenuLeftCSSProperty('-1000px');
             document.body.style.overflow = 'visible';
@@ -17,62 +19,40 @@ export function Navbar() {
             document.body.style.overflow = 'hidden';
         }
     }
+     */
+
 
     function SelectTab(tabNumber : number) {
         setSelectedTab(tabNumber);
     }
 
     return <>
-        {/*Mobile Navbar*/}
+        {/*Desktop Navbar*/}
         <div className="navbar hidden sm:flex">
-            <button onClick={() => SelectTab(0)}>
-                <img className={"w-[60px]"} src={"UI/Logo.svg"} alt={"Zone"}/>
-            </button>
-            <div className={"flex flex-row items-center gap-4"}>
-                <li><button id="ProfileBtn" className={"navbardesktopbtn"} onClick={() => SelectTab(0)}>Profile</button></li>
-                <li><button id="ZoneBtn" className={"navbardesktopbtn"} onClick={() => SelectTab(1)}>Zone</button>
-                </li>
-            </div>
-        </div>
-
-        {/*Mobile Navbar*/}
-        <div className={"flex md:hidden relative"}>
-            <div className={"flex flex-row items-center"}>
-            <img className="sidemenubtn" onClick={() => ToggleMenu()} id="MenuButton" src="UI/SideMenuButton.svg" alt="navmenu"/>
-            </div>
-            {/*Mobile Menu*/}
-            <div id="NavMenu" style={{left: mobileMenuLeftCSSProperty}} ref={navMenu} className="navbarmenu">
-                <ul className={"navlinks"}>
+            <ul className={"navcontainer"}>
                     <li>
-                        <button id="ProfileBtn" className={"navbarbtn navbarbtn1"}
-                                onClick={() => SelectTab(0)}>Profile
+                        <button id="ProfileBtn" className={"navbarbtn"}
+                                onClick={() => SelectTab(0)}>{authService.isLoggedIn ?
+                            <img className={"navicon"}
+                                 src={`${backendUrl}/storage/users/${authService.activeUser.id}/profilepic.png`}
+                                 alt={"profileicon"}/> :
+                            <img className={"navicon"} src="UI/ProfileNavIcon.svg" alt={"profile"}/>}
+                            <p className={"buttontitle"}>Profile</p>
                         </button>
-                        <ul className={"dropdownlist dropdown1"}>
-                            <li>
-                                <button onClick={() => SelectTab(0)}>Dropdown button</button>
-                            </li>
-                            <li>
-                                <button onClick={() => SelectTab(0)}>Dropdown button</button>
-                            </li>
-                        </ul>
                     </li>
                     <li>
-                        <button id="ZoneBtn" className={"navbarbtn navbarbtn2"} onClick={() => SelectTab(1)}>Zone
+                        <button id="ZoneBtn" className={"navbarbtn"} onClick={() => SelectTab(1)}>
+                            <img className={"navicon"} src="UI/ChatNavIcon.svg" alt={"zone"}/>
+                            <p className={"buttontitle"}>Zone</p>
                         </button>
-                        <ul className={"dropdownlist dropdown2"}>
-                            <li>
-                                <button onClick={() => SelectTab(0)}>Dropdown button</button>
-                            </li>
-                            <li>
-                                <button onClick={() => SelectTab(0)}>Dropdown button</button>
-                            </li>
-                        </ul>
                     </li>
-                </ul>
-            </div>
+                    <li>
+                        <button id="SettingsNavBtn" className={"navbarbtn"} onClick={() => SelectTab(2)}>
+                            <img className={"navicon"} src="UI/SettingsNavIcon.svg" alt={"settings"}/>
+                            <p className={"buttontitle"}>Settings</p>
+                        </button>
+                    </li>
+            </ul>
         </div>
-
-
-
     </>;
 }

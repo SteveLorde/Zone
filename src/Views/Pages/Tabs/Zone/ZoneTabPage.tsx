@@ -48,19 +48,24 @@ export function ZoneTabPage() {
 
     return (
         <>
-            {!isZoneJoined && <div className={"flex flex-col gap-3 items-center"}>
+
+            {!isZoneJoined && <div className={"tab gap-4"}>
                 <form className={"flex flex-col items-center gap-4"} onSubmit={joinZoneSubmit(JoinZone)}>
-                    <input className={"forminput"} type={"text"} placeholder={"insert zone id"} {...joinZoneForm("zoneId")} />
+                    <input className={"forminput"} type={"text"} placeholder={"insert zone id..."} {...joinZoneForm("zoneId")} />
                     <input className={"appbtn"} type={"submit"} value={"Join Zone"} />
                 </form>
-                <button className={"appbtn"} onClick={() => SelectCreateZoneTab()}>Create Zone</button>
+                <div className={"flex flex-col items-center"}>
+                    <button className={"appbtn"} onClick={() => SelectCreateZoneTab()}>Create Zone</button>
+                </div>
             </div>}
 
             {isZoneJoined && <section>
+                <div className={"tab"}>
                 {/*ChatPanel Component*/}
-                <ChatPanel zone={zone} zoneUsers={zoneUsers} chatService={chatService} authService={authService}/>
-                {/*Canvas Component*/}
-                <Canvas/>
+                    <ChatPanel zone={zone} zoneUsers={zoneUsers} chatService={chatService} authService={authService}/>
+                    {/*Canvas Component*/}
+                    <Canvas/>
+                </div>
             </section>
             }
         </>
