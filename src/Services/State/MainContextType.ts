@@ -7,7 +7,7 @@ export interface MainContextType {
     setSelectedTab: React.Dispatch<React.SetStateAction<number>>,
     authService: IAuthenticationService
     chatService: IChatService
-    visibleErrorWindow: boolean
-    setErrorWindowVisible: React.Dispatch<React.SetStateAction<boolean>>
-    closeErrorWindow: () => void
+    isErrorModalVisible: boolean
+    setErrorModalVisible: React.Dispatch<React.SetStateAction<boolean>>
+    closeErrorModal: () => void
 }

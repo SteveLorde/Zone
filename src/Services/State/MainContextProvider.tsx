@@ -12,10 +12,10 @@ export function MainContextProvider({children}: { children: React.ReactElement }
     const _chatService: IChatService = new ChatService(_authService);
 
     const [selectedTab, setSelectedTab] = useState(0);
-    const [isErrorVisible, setErrorVisible] = useState<boolean>(false);
+    const [isErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
 
     function CloseErrorWindow() {
-        setErrorVisible(false);
+        setErrorModalVisible(false);
     }
 
     const contextValue: MainContextType = {
@@ -23,9 +23,9 @@ export function MainContextProvider({children}: { children: React.ReactElement }
         setSelectedTab: setSelectedTab,
         authService: _authService,
         chatService: _chatService,
-        visibleErrorWindow: isErrorVisible,
-        setErrorWindowVisible: setErrorVisible,
-        closeErrorWindow: CloseErrorWindow
+        isErrorModalVisible: isErrorModalVisible,
+        setErrorModalVisible: setErrorModalVisible,
+        closeErrorModal: CloseErrorWindow
     };
 
     return <>

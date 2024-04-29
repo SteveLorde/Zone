@@ -16,7 +16,7 @@ export function CreateZonePanel() {
         }
     }
 
-    const {register: newZoneForm, handleSubmit: submitNewZoneForm} = useForm<NewZoneRequest>();
+    const {register: newZoneForm, handleSubmit: submitNewZoneForm, formState: {errors: createZoneErrors}} = useForm<NewZoneRequest>();
 
     return <>
         <div className={"flex flex-col md:grid grid-cols-2 gap-4 bg-white m-4 p-4 h-[100vh]"}>
@@ -27,8 +27,15 @@ export function CreateZonePanel() {
                 <form ref={createZoneFormRef} className={"flex flex-col gap-4"}
                       onSubmit={submitNewZoneForm(SubmitNewZone)}>
                     <p className={"formtitle"}>Zone Name</p>
-                    <input className={"forminput"} placeholder={"Zone Name..."} {...newZoneForm("title")} />
-                    <p className={"formtitle"}>Zone Password</p>
+                    <input className={"forminput"} placeholder={"Zone Name..."} {...newZoneForm("title", {required: true, minLength: 3})} />
+                    <div>
+                        {createZoneErrors.title?.type === "required" && <span className={"text-red-500"}>please fill zone title</span>}
+                        {createZoneErrors.title?.type === "minLength" && <span className={"text-red-500"}>please type zone title of at least 3 letters</span>}
+                    </div>
+                    <div className={"flex flex-row items-center gap-2"}>
+                        <p className={"formtitle"}>Zone Password</p>
+                        <p className={"text-xl text-gray-300"}>Optional*</p>
+                    </div>
                     <input className={"forminput"} placeholder={"Zone Password..."} {...newZoneForm("title")} />
                     <input className={"appbtn p-3 text-white"} type={"submit"}
                            value={"Create Zone"}/>

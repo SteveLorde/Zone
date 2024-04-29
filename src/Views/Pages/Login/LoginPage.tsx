@@ -9,7 +9,7 @@ import {MainContext} from "../../../Services/State/MainContext.tsx";
 
 
 export function LoginPage({authService} : {authService : IAuthenticationService}) {
-    const {visibleErrorWindow , setErrorWindowVisible, closeErrorWindow} = useContext(MainContext);
+    const {isErrorModalVisible , setErrorModalVisible} = useContext(MainContext);
     const {register : loginInput, handleSubmit : loginFormSubmit,  formState: { errors : loginErrors}} = useForm<AuthRequest>();
     const {register : registerInput, handleSubmit : registerFormSubmit,  formState: { errors : registerErrors}} = useForm<AuthRequest>();
     const [didRegister , setDidRegister] = useState<boolean>(false);
@@ -41,13 +41,13 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
         }
         else {
             setIsErrorLogin(true);
-            setErrorWindowVisible(true);
+            setErrorModalVisible(true);
         }
     }
 
     return (
         <>
-            {visibleErrorWindow && <CustomErrorModal Type={isErrorLogin} Message={"Wrong Username Or Password"} CloseWindow={closeErrorWindow}/>}
+            {isErrorModalVisible && <CustomErrorModal Type={isErrorLogin} Message={"Wrong Username Or Password"}/>}
 
             <div className={"loginpage"}>
                 <div className={"loginpanel"}>
@@ -61,13 +61,13 @@ export function LoginPage({authService} : {authService : IAuthenticationService}
                             <p className={"forminputtitle"}>Username</p>
                             <input className={"forminput2"} type={"text"} placeholder={"Username..."} {...loginInput("userName", {required: true})}
                                    aria-invalid={loginErrors.userName ? "true" : "false"}/>
-                            {loginErrors.userName?.type === "required" && (
-                                <p className={"text-red-500"}>username is required</p>)}
+                            {loginErrors.userName?.type === "required" &&
+                                <p className={"text-red-500"}>username is required</p>}
                             <p className={"forminputtitle"}>Password</p>
                             <input className={"forminput2"} type={"text"} placeholder={"Password..."} {...loginInput("password", {required: true})}
                                    aria-invalid={loginErrors.password ? "true" : "false"}/>
-                            {loginErrors.password?.type === "required" && (
-                                <p className={"text-red-500"}>password is required</p>)}
+                            {loginErrors.password?.type === "required" &&
+                                <p className={"text-red-500"}>password is required</p>}
                             <input className={"appbtn"} type={"submit"} value="Login"/>
                         </form>}
 

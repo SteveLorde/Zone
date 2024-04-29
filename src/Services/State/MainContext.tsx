@@ -8,8 +8,8 @@ export const MainContext = createContext<MainContextType>({
     setSelectedTab: () => {},
     authService: {} as AuthenticationService,
     chatService: {} as ChatService,
-    visibleErrorWindow: false,
-    setErrorWindowVisible: () => {},
-    closeErrorWindow: () => {}
+    isErrorModalVisible: false,
+    setErrorModalVisible: () => {},
+    closeErrorModal: () => {}
 });
 
