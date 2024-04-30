@@ -14,4 +14,6 @@ export class User {
     createdZones : Zone[] = [];
     @AutoMap( () => Zone)
     joinedZones : Zone[] = [];
+    @AutoMap(() => Zone)
+    registeredOn : Date = new Date();
 }

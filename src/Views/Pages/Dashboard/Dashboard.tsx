@@ -5,7 +5,7 @@ import {MainContext,} from "../../../Services/State/MainContext.tsx";
 import {ProfileTabPage} from "../Tabs/Profile/ProfileTabPage.tsx";
 import {ZoneTabPage} from "../Tabs/Zone/ZoneTabPage.tsx";
 import {SettingsPage} from "../Tabs/Settings/SettingsPage.tsx";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {CreateZonePanel} from "../../Components/CreateZonePanel/CreateZonePanel.tsx";
 
 export function Dashboard() {
@@ -41,12 +41,10 @@ export function Dashboard() {
         }
     }
 
-    /*
+
     useEffect(() => {
         StartBackEndConnection;
     }, []);
-
-     */
 
     return (
         <>

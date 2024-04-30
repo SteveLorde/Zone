@@ -16,7 +16,7 @@ export function ProfileTabPage() {
                 </div>
                 <div>
                     <h2 className={"text1"}>{authService.activeUser.userName}</h2>
-                    <p className={"text1"}>{authService.activeUser.registeredDate}</p>
+                    <p className={"text1"}>{authService.activeUser.registeredOn?.toDateString()}</p>
                 </div>
             </div>
         </>
