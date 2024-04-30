@@ -17,6 +17,7 @@ export function ChatPanel({zone, zoneUsers, chatService, authService} : {zone : 
     }
 
 
+    /*
     function FindMessageUser(messageUserId : string) {
         let user = {} as User;
         for (let i = 0; i < zoneUsers.length - 1; i++) {
@@ -27,6 +28,8 @@ export function ChatPanel({zone, zoneUsers, chatService, authService} : {zone : 
         }
         return user;
     }
+
+     */
 
     async function ListenToMessages() {
         if (chatService.isChatServiceConnected) {
@@ -77,7 +80,7 @@ export function ChatPanel({zone, zoneUsers, chatService, authService} : {zone : 
                             {chatMessages.map((message: Message) =>
                                 <div className={"message"}>
                                     <img className={"messageuseravatar"}
-                                         src={`${backendUrl}/storage/users/${FindMessageUser(message.userId)}/profilepic.png`} alt={"ProfileImage"}/>
+                                         src={`${backendUrl}/storage/users/${message.id}/profilepic.png`} alt={"ProfileImage"}/>
                                     <p className={"messagecontent"}>{message.content}</p>
                                 </div>
                             )}
