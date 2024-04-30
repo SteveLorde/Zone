@@ -77,7 +77,7 @@ export function ChatPanel({zone, zoneUsers, chatService, authService} : {zone : 
                             {chatMessages.map((message: Message) =>
                                 <div className={"message"}>
                                     <img className={"messageuseravatar"}
-                                         src={`storage/${FindMessageUser(message.userId)}/`} alt={"ProfileImage"}/>
+                                         src={`${backendUrl}/storage/users/${FindMessageUser(message.userId)}/profilepic.png`} alt={"ProfileImage"}/>
                                     <p className={"messagecontent"}>{message.content}</p>
                                 </div>
                             )}
