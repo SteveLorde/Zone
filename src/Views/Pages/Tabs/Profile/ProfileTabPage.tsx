@@ -1,7 +1,7 @@
 import "./ProfileTab.scss";
 import {useContext, useRef} from "react";
 import {MainContext} from "../../../../Services/State/MainContext.tsx";
-//import {ProfilePicFallBack} from "../../../../Utilities/NullPic/ImageFallBack.ts";
+//import {ProfilePicFallBack} from "../../../../Utilities/ImageFallback/ImageFallBack.ts";
 
 export function ProfileTabPage() {
 

@@ -16,17 +16,17 @@ export class ChatService implements IChatService{
     }
 
     backendUrl = backendUrl;
-    chatConnection : signalr.HubConnection = {} as signalr.HubConnection;
+    chatConnection = new signalr.HubConnectionBuilder().withUrl('http://localhost:5208/chathub').withAutomaticReconnect().build();
     isChatServiceConnected : boolean = false;
     joinedZoneId : string = "";
 
 
      Initialize() {
-        this.chatConnection = new signalr.HubConnectionBuilder().withUrl(`${this.backendUrl}/chathub`, {transport: signalr.HttpTransportType.WebSockets, accessTokenFactory: () => this._authService.GetToken()}).build();
-        this.chatConnection.start().then(() => this.isChatServiceConnected = true);
-        this.chatConnection.on("connected", () => {
-            console.log("Backend Reporting Over :)");
-        });
+         this.chatConnection.start().catch(err => console.log(err));
+         this.chatConnection.on("connected", () => {
+             console.log("Backend Reporting Over :)");
+             this.isChatServiceConnected = true;
+         });
     }
 
     CloseConnection() {

@@ -7,6 +7,7 @@ import {ZoneTabPage} from "../Tabs/Zone/ZoneTabPage.tsx";
 import {SettingsPage} from "../Tabs/Settings/SettingsPage.tsx";
 import {useContext, useEffect} from "react";
 import {CreateZonePanel} from "../../Components/CreateZonePanel/CreateZonePanel.tsx";
+import {ChatService} from "../../../Services/Chat/ChatService.ts";
 
 export function Dashboard() {
     const {selectedTabNumber, chatService, authService} = useContext(MainContext);
@@ -35,16 +36,13 @@ export function Dashboard() {
             //setComponentToRender(<ProfileTabPage />);
     }
 
-    function StartBackEndConnection() {
-        if (authService.isLoggedIn) {
-            chatService.Initialize();
-        }
-    }
-
+    console.log("is logged in " + authService.isLoggedIn);
 
     useEffect(() => {
-        StartBackEndConnection;
-    }, []);
+        if (!chatService.isChatServiceConnected && authService.isLoggedIn) {
+            chatService.Initialize();
+        }
+    }, [authService.isLoggedIn, chatService]);
 
     return (
         <>

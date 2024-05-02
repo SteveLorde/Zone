@@ -5,6 +5,9 @@ import {backendUrl} from "../../../Services/API.ts";
 
 export function Navbar() {
     const {setSelectedTab, authService} = useContext(MainContext);
+
+
+    //MOBILE NAVBAR FUNCTIONS AND VARIABLES
     //const [mobileMenuLeftCSSProperty, setMobileMenuLeftCSSProperty] = useState('-1000px');
     //const navMenu = useRef<HTMLDivElement>(null);
 
@@ -32,7 +35,7 @@ export function Navbar() {
             <ul className={"navcontainer"}>
                     <li>
                         <button id="ProfileBtn" className={"navbarbtn"}
-                                onClick={() => SelectTab(0)}>{authService.isLoggedIn ?
+                                onClick={() => SelectTab(0)}>{authService.isLoggedIn && authService.activeUser.id != "" ?
                             <img className={"navicon"}
                                  src={`${backendUrl}/storage/users/${authService.activeUser.id}/profilepic.png`}
                                  alt={"profileicon"}/> :

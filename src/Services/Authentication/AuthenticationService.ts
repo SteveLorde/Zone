@@ -18,8 +18,9 @@ export class AuthenticationService implements IAuthenticationService {
     async Login(authRequest: AuthRequest) : Promise<boolean>{
         return await axios.post<string>(`${this.backendUrl}/authentication/login`, authRequest).then(tokenres => {
             if (tokenres.data !== "") {
-                this.isLoggedIn = true;
+                this.setSessionLoggedIn();
                 localStorage.setItem('useraccesstoken', tokenres.data);
+                this.GetLoggedUser();
                 return true;
             }
             else {
@@ -31,6 +32,20 @@ export class AuthenticationService implements IAuthenticationService {
     async Register(authRequest: AuthRequest): Promise<boolean> {
         return await axios.post<boolean>(`${this.backendUrl}/authentication/register`, authRequest).then(res => res.data);
     }
+
+    setSessionLoggedIn() {
+        localStorage.setItem('isloggedin', JSON.stringify("true"));
+    }
+
+    getSessionLoggedIn() {
+        const isloggedin = localStorage.getItem('isloggedin');
+        return isloggedin ? Boolean(isloggedin) : null;
+    }
+
+    LogOut() {
+        localStorage.removeItem('isloggedin');
+    }
+
 
     GetToken(): string {
         const token = localStorage.getItem('usertoken');
